@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  reverse-proxy:
+    container_name: reverse-proxy
+    image: reverse-proxy
+    build:
+      context: ./reverse-proxy
+      dockerfile: dockerfile
+    ports:
+      - "80:80"
+      - "433:433"
+    restart: always
+    depends_on:
+      - front
+    volumes:
+      - "./reverse-proxy/nginx/nginx.conf:/etc/nginx/nginx.conf"
+    networks:
+      - front_network
+
+  front:
+    container_name: front
+    image: front
+    build:
+      context: ./front-end/react-front
+      dockerfile: dockerfile
+    expose:
+      - "3000"
+    restart: always
+    depends_on:
+      - back
+    networks:
+      - front_network
+
+  back:
+    container_name: back
+    image: back
+    build:
+      context: ./back-end/test_project
+      dockerfile: dockerfile
+    expose:
+      - "8000"
+    restart: always
+    networks:
+      - front_network
+
+networks:
+  front_network:
+    driver: bridge
