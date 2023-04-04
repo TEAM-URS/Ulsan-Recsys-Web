@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import ShowMap from './kakao_api/ShowKakaoMap';
+import Modal from './modal/surveyModal';
+import Backdrop from './background/backDrop';
 
-function App() {
-  const [message, setMessage] = useState('');
+const App = () => {
+  const [showModal, setShowModal] = useState(true);
+  const [showBackdrop, setShowBackdrop] = useState(true);
 
-  useEffect(() => {
-    fetch('http://localhost/api', {
-  method: 'GET',
-  mode: 'cors',
-  credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then((response) => response.json())
-.then((data) => setMessage(data.message))
-.catch((error) => console.log(error));
- // 백엔드 API URL을 입력하세요.
-  }, []);
+  const closeModalHandler = () => {
+    setShowBackdrop(false);
+    setShowModal(false);
+  };
 
   return (
     <div>
-      <h1>{message}</h1>
+        {showBackdrop && <Backdrop />}
+        <ShowMap></ShowMap>
+        {showModal && <Modal onClose={closeModalHandler} />}
     </div>
   );
-}
+};
 
 export default App;

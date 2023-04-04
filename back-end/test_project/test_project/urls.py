@@ -19,4 +19,3 @@ from .views import hello
 urlpatterns = [
     path('api', hello, name='hello'),
 ]
-    
