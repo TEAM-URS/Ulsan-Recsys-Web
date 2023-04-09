@@ -28,10 +28,12 @@ const App = () => {
 
   return (
     <div>
+      <div>
         <Sidebar ref={parentRef} />
-        {showBackdrop && <Backdrop />}
         <ShowMap />
+        {showBackdrop && <Backdrop />}
         {showModal && <Modal onClose={closeModalHandler}/>}
+      </div>
     </div>
   );
 };

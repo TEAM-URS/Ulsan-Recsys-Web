@@ -50,6 +50,33 @@ class Sidebar extends React.Component {
             </div>
             <div>
               <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
             </div>
           </div>
 
