@@ -154,8 +154,10 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
       // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경
       marker.setImage(clickImage);
 
+      // 사이드바를 호출하여 값 초기화
       parentRef.current.setTitle(index);
       parentRef.current.setMenuOpen();
+      parentRef.current.setScrollTop();
 
     // 클릭된 마커를 현재 클릭된 마커 객체로 설정
     selectedMarker = marker;
