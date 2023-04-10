@@ -1,0 +1,7 @@
+.cover {
+    background: url("ulsan_retro.png");
+    background-position: center;
+    background-size: 60% 90%;
+    height: 50vh;
+    background-repeat: no-repeat;
+}
