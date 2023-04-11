@@ -1,1 +1,24 @@
-hi
+{% extends 'partials/base.html' %} {% block title %} Test Recommadation Page {% endblock %} {% block content %}
+<div class="cover">
+    <div class="container">
+        <h1>유저 아이디 입력</h1>
+        <form action="{% url 'test'%}" method="POST">
+            {% csrf_token %}
+            <input name="u_id" placeholder="유저 아이디" />
+            <br />
+            <br />
+            <button type="submit">추천받기</button>
+        </form>
+    </div>
+    {% if top_n %}
+    <div class="container">
+        <h1>추천 결과</h1>
+        {% for p_id in top_n %} {{p_id}} {% endfor %}
+    </div>
+    {% else %}
+    <div class="container">
+        <h1>추천 결과 없음</h1>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
