@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from util import get_unvisted_item, get_items
+from .util import get_unvisted_item, get_items
 
 def recom_cf(model, u_id, data_df, top_n):
 

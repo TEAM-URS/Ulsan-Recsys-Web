@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'ursapp.apps.UrsappConfig',
+    'ursapp.recsys',
+    'ursapp.recsys.model',
+    # 'ursapp.recsys.util'
 ]
 
 MIDDLEWARE = [
