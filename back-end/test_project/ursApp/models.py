@@ -4,12 +4,15 @@ from django.db import models
 
 class UserInfo(models.Model):
     u_id = models.AutoField(primary_key=True)
-    user = models.CharField(max_length=50)
+    u_name = models.CharField(max_length=50)
     
 class RestInfo(models.Model):
-    i_id = models.AutoField(primary_key=True)
-    restaurant = models.CharField(max_length=100)
+    p_id = models.AutoField(primary_key=True)
+    p_name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    
     
 class AttrInfo(models.Model):
-    i_id = models.AutoField(primary_key=True)
-    attraction = models.CharField(max_length=100)
+    p_id = models.AutoField(primary_key=True)
+    p_name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
