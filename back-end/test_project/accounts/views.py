@@ -45,4 +45,4 @@ def logout(request):
   if request.method == 'POST':
     auth.logout(request)
     return HttpResponse(status=200)
-  return render(request, 'accounts/signup.html')
+  return render(request, 'ursapp/index.html')
