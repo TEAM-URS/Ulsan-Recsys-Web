@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import DropdownLogin from '../login_button/Loginbutton';
 
 // kakaolmaps 객체 참조
 var kakao = window.kakao;
@@ -44,19 +45,7 @@ const ShowMap=()=>{
 
     return (
       <div style={{ width: '100%', height: '100vh' }}>
-          <div id="map" style={{ width: '100%', height: '100%' }}>
-            <button
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '20px',
-                padding: '10px',
-                background: 'white',
-                border: '1px solid black',
-                borderRadius: '5px',
-                zIndex: 10,
-              }}
-            onClick={() => {console.log('hello!!')}}></button>
+          <div id="map" style={{ width: '100%', height: '100%'}}>
           </div>
       </div>
     )
@@ -87,9 +76,6 @@ export function saveCoordinatesToAddress(addresses) {
 }
 
 export function initMarker(parentRef) {
-  setTimeout(() => {
-  }, 1000);
-
   var bounds = new kakao.maps.LatLngBounds();
 
   var i = 0;
@@ -114,7 +100,7 @@ export function initMarker(parentRef) {
 
 function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, parentRef) {
   var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin), // 기본 마커 이미지
-      overImage = createMarkerImage(markerSize, markerOffset, overOrigin), // 오버 마커 이미지
+      overImage = createMarkerImage(overMarkerSize, overMarkerOffset, overOrigin), // 오버 마커 이미지
       clickImage = createMarkerImage(markerSize, markerOffset, clickOrigin); // 클릭 마커 이미지
 
   // 마커를 생성하고 이미지는 기본 마커 이미지를 사용
@@ -123,6 +109,9 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
     position: position,
     image: normalImage,
   });
+
+  // 마커에 커스텀 속성 추가
+  marker.test = 'test';
 
   // 마커 객체애 마커아이디와 마커의 기본 이미지를 추가
   marker.normalImage = normalImage;
@@ -158,6 +147,9 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
       parentRef.current.setTitle(index);
       parentRef.current.setMenuOpen();
       parentRef.current.setScrollTop();
+
+      // 마커의 커스텀 속성을 출력
+      console.log(marker.test);
 
     // 클릭된 마커를 현재 클릭된 마커 객체로 설정
     selectedMarker = marker;

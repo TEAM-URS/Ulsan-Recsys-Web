@@ -3,6 +3,7 @@ import ShowMap, { initMarker, saveCoordinatesToAddress } from './kakao_api/Kakao
 import Modal from './modal/surveyModal';
 import Backdrop from './background/backDrop';
 import Sidebar from './sidebar/Sidebar';
+import DropdownLogin from './login_button/Loginbutton';
 
 let addresses = ['울산 중구 태화동 107', '울산 동구 일산동 905', '울산 울주군 서생면 진하리 307-2', '울산 동구 일산동 905-7',
                  '울산 울주군 상북면 이천리 829', '울산 울주군 삼남읍 방기리 산 52', '울산 울주군 언양읍 동부리 291', '울산 남구 대학로 164 웰츠타워 상가2층 214호',
@@ -31,6 +32,9 @@ const App = () => {
       <div>
         <Sidebar ref={parentRef} />
         <ShowMap />
+        <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 1 }}>
+          <DropdownLogin />
+        </div>
         {showBackdrop && <Backdrop />}
         {showModal && <Modal onClose={closeModalHandler}/>}
       </div>
