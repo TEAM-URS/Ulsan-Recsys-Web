@@ -9,7 +9,8 @@ class Sidebar extends React.Component {
     this.state = {
       title: '',
       menuOpen: false
-    }
+    };
+    this.contentRef = React.createRef();
   }
 
   setTitle(title) {
@@ -24,15 +25,24 @@ class Sidebar extends React.Component {
     this.setState({menuOpen: true})
   }
 
+  setScrollTop () {
+    const menu = document.querySelector('.bm-menu');
+    const scrollToTop = () => {
+      menu.scrollTop = 0;
+    };
+    window.requestAnimationFrame(scrollToTop);
+  }
+
   render () {
     return (
-      <div>
+      <div ref={this.contentRef}>
         <Menu 
           isOpen={this.state.menuOpen}
           onStateChange={(state) => this.handleStateChange(state)}
           right
           width={'30%'}
           customCrossIcon={false}
+          ref={this.menuRef} // menuRef를 전달
         >
           <div className="review">
             <div className="header">
@@ -49,6 +59,33 @@ class Sidebar extends React.Component {
             <div className="image-wrapper">
             </div>
             <div>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
+              <p className="review-text">리뷰 내용</p>
               <p className="review-text">리뷰 내용</p>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import DropdownLogin from '../login_button/Loginbutton';
 
 // kakaolmaps 객체 참조
 var kakao = window.kakao;
@@ -43,9 +44,10 @@ const ShowMap=()=>{
   });
 
     return (
-        <div style={{ width: '100%', height: '100vh' }}>
-            <div id="map" style={{ width: '100%', height: '100%' }}></div>
-        </div>
+      <div style={{ width: '100%', height: '100vh' }}>
+          <div id="map" style={{ width: '100%', height: '100%'}}>
+          </div>
+      </div>
     )
 }
 
@@ -74,17 +76,14 @@ export function saveCoordinatesToAddress(addresses) {
 }
 
 export function initMarker(parentRef) {
-  setTimeout(() => {
-  }, 1000);
-
   var bounds = new kakao.maps.LatLngBounds();
 
-  console.log(places);
+  var i = 0;
 
   for (const prop in places) {
     var gapX = (MARKER_WIDTH + SPRITE_GAP), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
-        originY = (MARKER_HEIGHT + SPRITE_GAP), // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
-        overOriginY = (OVER_MARKER_HEIGHT + SPRITE_GAP), // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
+        originY = (MARKER_HEIGHT + SPRITE_GAP) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
+        overOriginY = (OVER_MARKER_HEIGHT + SPRITE_GAP) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
         normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
         clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
         overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
@@ -92,6 +91,8 @@ export function initMarker(parentRef) {
     addMarker(prop, places[prop], normalOrigin, overOrigin, clickOrigin, parentRef);
     
     bounds.extend(places[prop]); 
+
+    i = (i + 1) % 3;
   }
 
   map.setBounds(bounds);
@@ -99,7 +100,7 @@ export function initMarker(parentRef) {
 
 function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, parentRef) {
   var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin), // 기본 마커 이미지
-      overImage = createMarkerImage(markerSize, markerOffset, overOrigin), // 오버 마커 이미지
+      overImage = createMarkerImage(overMarkerSize, overMarkerOffset, overOrigin), // 오버 마커 이미지
       clickImage = createMarkerImage(markerSize, markerOffset, clickOrigin); // 클릭 마커 이미지
 
   // 마커를 생성하고 이미지는 기본 마커 이미지를 사용
@@ -108,6 +109,9 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
     position: position,
     image: normalImage,
   });
+
+  // 마커에 커스텀 속성 추가
+  marker.test = 'test';
 
   // 마커 객체애 마커아이디와 마커의 기본 이미지를 추가
   marker.normalImage = normalImage;
@@ -131,7 +135,6 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
   event.addListener(marker, 'click', function () {
     // 클릭된 마커가 없고 click 마커가 클릭된 마커가 아니면
     // 마커의 이미지를 클릭 이미지로 변경
-    if (!selectedMarker || selectedMarker !== marker) {
 
       // 클릭된 마커 객체가 null이 아니면
       // 클릭된 마커의 이미지를 기본 이미지로 변경
@@ -140,9 +143,13 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
       // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경
       marker.setImage(clickImage);
 
+      // 사이드바를 호출하여 값 초기화
       parentRef.current.setTitle(index);
       parentRef.current.setMenuOpen();
-    }
+      parentRef.current.setScrollTop();
+
+      // 마커의 커스텀 속성을 출력
+      console.log(marker.test);
 
     // 클릭된 마커를 현재 클릭된 마커 객체로 설정
     selectedMarker = marker;
