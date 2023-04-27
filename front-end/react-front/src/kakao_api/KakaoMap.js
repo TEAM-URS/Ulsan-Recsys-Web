@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import DropdownLogin from '../login_button/Loginbutton';
 
 // kakaolmaps 객체 참조
 var kakao = window.kakao;
@@ -40,7 +39,9 @@ const ShowMap=()=>{
       level: 6
     };
 
-    map = new kakao.maps.Map(container, options);
+    if (map === null) {
+      map = new kakao.maps.Map(container, options);
+    }
   });
 
     return (
