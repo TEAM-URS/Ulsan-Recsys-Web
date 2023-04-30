@@ -25,7 +25,7 @@ def signup(request):
     if password == request.POST['password2']:
       user = User.objects.create_user(username=username, email=email, password=password)
       auth.login(request, user)
-      return HttpResponse(status=200)
+      return render(request, 'usrApp/index.html')
   return render(request, 'accounts/signup.html')
 
 def login(request):
@@ -35,7 +35,7 @@ def login(request):
     user = auth.authenticate(request, username=username, password=password)
     if user is not None:
       auth.login(request, user)
-      return HttpResponse(status=200)
+      return render(request, 'usrApp/index.html')
     else:
       return render(request, 'accounts/login.html', {'error':'아이디, 비밀번호를 확인해주세요.'})
   else:
@@ -44,5 +44,5 @@ def login(request):
 def logout(request):
   if request.method == 'POST':
     auth.logout(request)
-    return HttpResponse(status=200)
+    return render(request, 'usrApp/index.html')
   return render(request, 'ursapp/index.html')
