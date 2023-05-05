@@ -1,19 +1,24 @@
 {% extends 'partials/base.html' %} {% block title %} Test Recommadation Page {% endblock %} {% block content %}
 <div class="cover">
     <div class="container">
-        <h1>유저 아이디 입력</h1>
-        <form action="{% url 'test'%}" method="POST">
+        <h1>먹거리 추천</h1>
+        <form action="{% url 'recsys'%}" method="POST">
             {% csrf_token %}
-            <input name="u_id" placeholder="유저 아이디" />
-            <br />
-            <br />
             <button type="submit">추천받기</button>
         </form>
     </div>
-    {% if top_n %}
+    <br />
+    {% if i_list %}
     <div class="container">
         <h1>추천 결과</h1>
-        {% for p_id in top_n %} {{p_id}} {% endfor %}
+        <form action="{% url 'kakaomap' %}" method="POST">
+            {% csrf_token %} {% for item in i_list %}
+            <p>
+                <label><input type="checkbox" value="{{item.p_name}}" />{{item.p_name}}</label>
+            </p>
+            {% endfor %}
+            <button type="submit">선택완료</button>
+        </form>
     </div>
     {% else %}
     <div class="container">
