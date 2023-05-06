@@ -3,6 +3,7 @@ from django.http  import HttpResponse
 from .models import User
 from django.contrib import auth
 import re
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -25,9 +26,10 @@ def signup(request):
     if password == request.POST['password2']:
       user = User.objects.create_user(username=username, email=email, password=password)
       auth.login(request, user)
-      return render(request, 'usrApp/index.html')
+      return render(request, 'usrapp/index.html')
   return render(request, 'accounts/signup.html')
 
+@csrf_exempt
 def login(request):
   if request.method == 'POST':
     username = request.POST['username']
@@ -35,7 +37,7 @@ def login(request):
     user = auth.authenticate(request, username=username, password=password)
     if user is not None:
       auth.login(request, user)
-      return render(request, 'usrApp/index.html')
+      return redirect('index')
     else:
       return render(request, 'accounts/login.html', {'error':'아이디, 비밀번호를 확인해주세요.'})
   else:
@@ -43,6 +45,7 @@ def login(request):
   
 def logout(request):
   if request.method == 'POST':
+    print('ok')
     auth.logout(request)
-    return render(request, 'usrApp/index.html')
+    return redirect('index')
   return render(request, 'ursapp/index.html')
