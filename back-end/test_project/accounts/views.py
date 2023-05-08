@@ -44,7 +44,7 @@ def login(request):
     return render(request, 'accounts/login.html')
   
 def logout(request):
-  if request.method == 'POST':
+  if request.method == 'GET':
     print('ok')
     auth.logout(request)
     return redirect('index')
