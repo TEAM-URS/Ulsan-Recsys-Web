@@ -59,4 +59,14 @@ def recsys(request):
        
 @login_required
 def kakaomap(request):
-    return render(request, 'ursapp/kakaomap.html')
+    item_list = []
+    try:
+        if request.POST:
+            items = request.POST.getlist('item')
+            for i in items:
+                item = RestInfo.objects.get(p_name=i)
+                item_list.append(item)
+                print(item.url)
+        return render(request, 'ursapp/kakaomap.html', {'choice_list': item_list})
+    except KeyError:
+        return HttpResponse(status=400)    

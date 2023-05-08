@@ -14,7 +14,7 @@
         <form action="{% url 'kakaomap' %}" method="POST">
             {% csrf_token %} {% for item in i_list %}
             <p>
-                <label><input type="checkbox" value="{{item.p_name}}" />{{item.p_name}}</label>
+                <label><input type="checkbox" name="item" value="{{item.p_name}}" />{{item.p_name}}</label>
             </p>
             {% endfor %}
             <button type="submit">선택완료</button>
