@@ -35,6 +35,7 @@ def recsys(request):
 
     try: 
         user_id = str(request.user)
+        print(user_id)
         user = UserInfo.objects.get(u_name=user_id)
         if user_id == user.u_name:
             print("same")
@@ -67,6 +68,7 @@ def kakaomap(request):
             for i in items:
                 item = RestInfo.objects.get(p_name=i)
                 item_list.append({
+                    'title' : item.p_name,
                     'address': item.address
                 })
             item_list_json = json.dumps(item_list)
