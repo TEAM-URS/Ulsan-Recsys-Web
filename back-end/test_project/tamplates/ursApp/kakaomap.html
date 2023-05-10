@@ -24,22 +24,57 @@
         level: 5
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
-    
-    for (var i = 0; i < items.length; i++) {
-        var geocoder = new kakao.maps.services.Geocoder();
-        var address = items[i].address;
-        console.log(address)
+    var markers = [];
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    var createMarker = function(title, address) {
         geocoder.addressSearch(address, function(result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 var markerPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
                 var marker = new kakao.maps.Marker({
-                    position: markerPosition
+                    position: markerPosition,
+                    title: title
                 });
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">' + title + '</div>'
+                });
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    infowindow.open(map, marker);
+                });
+                markers.push(marker);
                 marker.setMap(map);
             } else {
                 console.log('Failed to get coordinates for address: ' + address);
             }
+
+            // 모든 마커가 생성된 후 지도 중심과 레벨 설정
+            if (markers.length === items.length) {
+                setMapCenterAndZoom();
+            }
         });
     }
+
+    for (var i = 0; i < items.length; i++) {
+        var title = items[i].title;
+        var address = items[i].address;
+        console.log(address)
+        console.log(title)
+        createMarker(title, address);
+    }
+    
+    function setMapCenterAndZoom() {
+        var bounds = new kakao.maps.LatLngBounds();
+        
+        for (var i = 0; i < markers.length; i++) {
+            bounds.extend(markers[i].getPosition());
+        }
+        
+        map.setBounds(bounds);
+    }
 </script>
+
+
+
+
+
 {% endblock content %}
