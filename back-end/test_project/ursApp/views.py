@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
@@ -59,4 +60,17 @@ def recsys(request):
        
 @login_required
 def kakaomap(request):
-    return render(request, 'ursapp/kakaomap.html')
+    item_list = []
+    try:
+        if request.POST:
+            items = request.POST.getlist('item')
+            for i in items:
+                item = RestInfo.objects.get(p_name=i)
+                item_list.append({
+                    'address': item.address
+                })
+            item_list_json = json.dumps(item_list)
+        return render(request, 'ursapp/kakaomap.html', {'items': item_list_json})
+    
+    except KeyError:
+        return HttpResponse(status=400)

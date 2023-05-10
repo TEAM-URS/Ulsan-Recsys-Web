@@ -11,22 +11,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="AttrInfo",
-            fields=[
-                ("p_id", models.AutoField(primary_key=True, serialize=False)),
-                ("p_name", models.CharField(max_length=100)),
-                ("location", models.CharField(max_length=100)),
-            ],
-        ),
-        migrations.CreateModel(
-            name="RestInfo",
-            fields=[
-                ("p_id", models.AutoField(primary_key=True, serialize=False)),
-                ("p_name", models.CharField(max_length=100)),
-                ("location", models.CharField(max_length=100)),
-            ],
-        ),
-        migrations.CreateModel(
             name="UserInfo",
             fields=[
                 ("u_id", models.AutoField(primary_key=True, serialize=False)),
