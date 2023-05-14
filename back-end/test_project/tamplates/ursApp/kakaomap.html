@@ -1,9 +1,6 @@
-{% extends 'partials/base.html' %} {% block title %} Kakaomap {% endblock %} {% block content %}
-<!-- {% for choice in choice_list %}
-<p>
-    <label>{{choice.url}}</label>
-</p>
-{% endfor %} -->
+{% extends 'partials/base.html' %} 
+{% block title %} Kakaomap {% endblock %} 
+{% block content %}
 <h2>Kakao Map</h2>
 <p style="margin-top:-12px">
     <em class="link">
@@ -39,7 +36,13 @@
                     content: '<div style="width:150px;text-align:center;padding:6px 0;">' + title + '</div>'
                 });
                 kakao.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
+                    if (marker.getZIndex() === 1) {
+                        marker.setZIndex(2);
+                        infowindow.close();
+                    } else {
+                        marker.setZIndex(1);
+                        infowindow.open(map, marker);
+                    }
                 });
                 markers.push(marker);
                 marker.setMap(map);
@@ -68,13 +71,7 @@
         for (var i = 0; i < markers.length; i++) {
             bounds.extend(markers[i].getPosition());
         }
-        
         map.setBounds(bounds);
     }
 </script>
-
-
-
-
-
 {% endblock content %}
