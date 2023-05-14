@@ -37,10 +37,6 @@ def recsys(request):
         user_id = str(request.user)
         print(user_id)
         user = UserInfo.objects.get(u_name=user_id)
-        if user_id == user.u_name:
-            print("same")
-        else:
-            print("eeeror")
             
         i_list = False
         if request.POST:
