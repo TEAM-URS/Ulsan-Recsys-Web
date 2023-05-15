@@ -7,8 +7,8 @@
 {% block content %}
 <div class="cover">
     <div class="container recsys-box">
-        <h1>먹거리 추천</h1>
-        <form action="{% url 'recsys'%}" method="POST" id="recsys-form">
+        <h1>맛집 추천</h1>
+        <form action="{% url 'recsys_r'%}" method="POST" id="recsys-form">
             {% csrf_token %}
             <button type="submit" class="recommend-button">추천받기</button>
         </form>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div id="result" style="display: none;">
+        <div id="result">
             {% if i_list %}
                 <h1>추천 결과</h1>
                 <form action="{% url 'kakaomap' %}" method="POST">
@@ -30,7 +30,7 @@
                         <p>
                             <label>
                                 <input type="checkbox" name="item" value="{{item.p_name}}" class="item-checkbox" />
-                                {{item.p_name}}
+                                {{item.p_name}} | 평점: {{item.rating}} | 태그: {{item.tags}} | <a href="{{item.url}}" target="_blank" rel="noopener noreferrer">상세정보</a>
                             </label>
                         </p>
                     {% endfor %}
@@ -38,7 +38,7 @@
                 </form>
                 <br/>
             {% else %}
-                <h1>추천 결과 없음</h1>
+                <h1></h1>
             {% endif %}
         </div>
     </div>
@@ -50,7 +50,7 @@
         padding: 20px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: baseline;
         height: 100vh;
     }
 
@@ -103,7 +103,7 @@
         margin: 15% auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        width: 30%;
         text-align: center;
     }
 </style>
@@ -118,8 +118,7 @@
     // Simulating the loading process
     setTimeout(function () {
         document.getElementById('modal').style.display = 'none';
-        document.getElementById('result').style.display = 'block';
         document.body.style.pointerEvents = 'auto';
-    }, 5000);
+    }, 1000*20);
 </script>
 {% endblock script %}
