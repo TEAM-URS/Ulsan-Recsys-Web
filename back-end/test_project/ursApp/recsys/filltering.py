@@ -18,10 +18,13 @@ def recom_cf(model, u_id, data_df, top_n):
     return recom_df
 
 
-def recom_cbf(p_id, sim):
+def recom_cbf(p_id, sim, flag=0):
     sim_scores = list(enumerate(sim[p_id]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:4]
+    if flag == 0: # Using Hybrid 
+        sim_scores = sim_scores[1:4]
+    else: # Using Content Based 
+        sim_scores = sim_scores[0:3] # 자기자신 포함 추천
 
     return sim_scores
 
