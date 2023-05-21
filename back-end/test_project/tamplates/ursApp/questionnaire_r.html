@@ -11,7 +11,7 @@
         <br/>
         <div id="result">
             {% if i_list %}
-                <form action="{% url 'kakaomap' %}" method="POST">
+                <form action="{% url 'cbf' %}" method="POST">
                     {% csrf_token %}
                     {% for item in i_list %}
                         <p>
@@ -19,7 +19,7 @@
                                 <input type="checkbox" name="item" value="{{item.p_name}}" class="item-checkbox" />
                                 {{item.p_name}} | 평점: {{item.rating}} | 태그: {{item.tags}} | <a href="{{item.url}}" target="_blank" rel="noopener noreferrer">상세정보</a>
                             </label>
-                            <input type="text" value="{{type}}" name="type" style="display: none;">
+                            <input type="text" value="rest" name="type" style="display: none;">
                         </p>
                     {% endfor %}
                     <button type="submit" class="complete-button">선택완료</button>

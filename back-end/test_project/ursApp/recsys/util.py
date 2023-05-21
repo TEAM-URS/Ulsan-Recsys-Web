@@ -13,17 +13,26 @@ def get_items(data_df, u_id):
     unvisited_items = [item for item in data_df.p_id.unique() if item not in visited_items]
     return unvisited_items, visited_items
 
-def culc_sim():
-    item_Table = pd.read_csv('ursapp/recsys/tmp_data/kmeans_item_Table.csv')
+def culc_sim(kind):
+    if kind == 'rest':
+        item_Table = pd.read_csv('ursapp/recsys/tmp_data/kmeans_item_Table.csv')
+    else:
+        item_Table = pd.read_csv('ursapp/recsys/tmp_data/attraction_ward_item_Table.csv')
+        
     item_Matrix = item_Table.groupby('p_id').mean()
     item_Matrix = item_Matrix.to_numpy()
     sim = cosine_similarity(item_Matrix, item_Matrix)
     return sim
 
 # csv파일 불러오는 함수 but... 실제 platform애서는 DB의 데이터 불러오겠금 수정 필요
-def load_data():
-    table_df = pd.read_csv('ursapp/recsys/tmp_data/ulsan_rest_table.csv')
+def load_data(kind):
+    if kind == 'rest':
+        table_df = pd.read_csv('ursapp/recsys/tmp_data/ulsan_rest_table.csv')
+    else:
+        table_df = pd.read_csv('ursapp/recsys/tmp_data/ulsan_attraction_table.csv')
+        
     table_df.drop(columns='comment', inplace=True)
     table_df.dropna(axis=0, how='any', inplace=True)
     data_df = table_df[['u_id', 'p_id', 'score']]
     return data_df
+

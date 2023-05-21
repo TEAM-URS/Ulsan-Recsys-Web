@@ -1,29 +1,16 @@
 {% extends 'partials/base.html' %}
 
 {% block title %}
-    Test Recommendation Page
+    Contents Based Filtering
 {% endblock %}
 
 {% block content %}
 <div class="cover">
     <div class="container recsys-box">
-        <h1>명소 추천</h1>
-        <form action="{% url 'recsys_a'%}" method="POST" id="recsys-form">
-            {% csrf_token %}
-            <button type="submit" class="recommend-button">추천받기</button>
-        </form>
-
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-body">
-                    추천 중...
-                </div>
-            </div>
-        </div>
-
+        <h1>추천 리스트</h1>
+        <br/>
         <div id="result">
             {% if i_list %}
-                <h1>추천 결과</h1>
                 <form action="{% url 'kakaomap' %}" method="POST">
                     {% csrf_token %}
                     {% for item in i_list %}
@@ -109,18 +96,3 @@
     }
 </style>
 {% endblock content %}
-{% block script %}
-<script>
-    document.getElementById('recsys-form').addEventListener('submit', function () {
-        document.getElementById('modal').style.display = 'block';
-        document.getElementById('result').style.display = 'none';
-        document.body.style.pointerEvents = 'none';
-    });
-    // Simulating the loading process
-    setTimeout(function () {
-        document.getElementById('modal').style.display = 'none';
-        document.body.style.pointerEvents = 'auto';
-    }, 1000*20);
-
-</script>
-{% endblock script %}

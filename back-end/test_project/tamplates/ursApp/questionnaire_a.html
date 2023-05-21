@@ -1,30 +1,17 @@
 {% extends 'partials/base.html' %}
 
 {% block title %}
-    Test Recommendation Page
+    Questionnaire Page
 {% endblock %}
 
 {% block content %}
 <div class="cover">
     <div class="container recsys-box">
-        <h1>명소 추천</h1>
-        <form action="{% url 'recsys_a'%}" method="POST" id="recsys-form">
-            {% csrf_token %}
-            <button type="submit" class="recommend-button">추천받기</button>
-        </form>
-
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-body">
-                    추천 중...
-                </div>
-            </div>
-        </div>
-
+        <h1>사전 설문지</h1>
+        <br/>
         <div id="result">
             {% if i_list %}
-                <h1>추천 결과</h1>
-                <form action="{% url 'kakaomap' %}" method="POST">
+                <form action="{% url 'cbf' %}" method="POST">
                     {% csrf_token %}
                     {% for item in i_list %}
                         <p>
@@ -32,7 +19,7 @@
                                 <input type="checkbox" name="item" value="{{item.p_name}}" class="item-checkbox" />
                                 {{item.p_name}} | 평점: {{item.rating}} | 태그: {{item.tags}} | <a href="{{item.url}}" target="_blank" rel="noopener noreferrer">상세정보</a>
                             </label>
-                            <input type="text" value="{{type}}" name="type" style="display: none;">
+                            <input type="text" value="attr" name="type" style="display: none;">
                         </p>
                     {% endfor %}
                     <button type="submit" class="complete-button">선택완료</button>
@@ -109,18 +96,3 @@
     }
 </style>
 {% endblock content %}
-{% block script %}
-<script>
-    document.getElementById('recsys-form').addEventListener('submit', function () {
-        document.getElementById('modal').style.display = 'block';
-        document.getElementById('result').style.display = 'none';
-        document.body.style.pointerEvents = 'none';
-    });
-    // Simulating the loading process
-    setTimeout(function () {
-        document.getElementById('modal').style.display = 'none';
-        document.body.style.pointerEvents = 'auto';
-    }, 1000*20);
-
-</script>
-{% endblock script %}
