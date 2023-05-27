@@ -39,17 +39,17 @@ const ShowMap=()=>{
       level: 6
     };
 
-    if (map === null) {
-      map = new kakao.maps.Map(container, options);
-    }
+    if (map !== null) { return; };
+
+    map = new kakao.maps.Map(container, options);
   });
 
-    return (
-      <div style={{ width: '100%', height: '100vh' }}>
-          <div id="map" style={{ width: '100%', height: '100%'}}>
-          </div>
-      </div>
-    )
+  return (
+    <div style={{ width: '100%', height: '100vh' }}>
+        <div id="map" style={{ width: '100%', height: '100%'}}>
+        </div>
+    </div>
+  )
 }
 
 export function saveCoordinatesToAddress(addresses) {
@@ -109,6 +109,7 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
     map: map,
     position: position,
     image: normalImage,
+    zindex: 2
   });
 
   // 마커에 커스텀 속성 추가
@@ -148,6 +149,7 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, paren
       parentRef.current.setTitle(index);
       parentRef.current.setMenuOpen();
       parentRef.current.setScrollTop();
+      parentRef.current.setVisited();
 
       // 마커의 커스텀 속성을 출력
       console.log(marker.test);
