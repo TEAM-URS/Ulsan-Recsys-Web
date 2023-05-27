@@ -36,3 +36,19 @@ class ReviewAttrInfo(models.Model):
     p_id = models.IntegerField(null=True)
     rating = models.IntegerField(null=True)
     review = models.CharField(max_length=500, blank=True)
+    
+class UserRestReview(models.Model):
+    r_id = models.IntegerField(primary_key=True)
+    u_id = models.IntegerField(null=True)
+    p_id = models.IntegerField(null=True)
+    rating = models.IntegerField(null=True)
+    review = models.CharField(max_length=500)
+ 
+class UserReview(models.Model):
+    r_id = models.IntegerField(primary_key=True)
+    u_id = models.IntegerField(null=True)
+    p_id = models.IntegerField(null=True)
+    rating = models.IntegerField(null=True)
+    review = models.CharField(max_length=500)
+    
+    
