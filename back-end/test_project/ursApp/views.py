@@ -1,4 +1,5 @@
 import json
+import requests
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
@@ -6,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from .models import UserInfo, RestInfo, AttrInfo
+from .models import UserInfo, RestInfo, AttrInfo, ReviewAttrInfo, ReviewRestInfo
 import tensorflow as tf
 from .recsys.filltering import recom_cbf, recom_hybrid
 from .recsys.util import get_unvisted_item, get_items, load_data, culc_sim
@@ -151,4 +152,24 @@ def kakaomap(request):
         return render(request, 'ursapp/kakaomap.html', {'items': item_list_json})
     except:
         HttpResponse(400)
- 
+
+@login_required
+def review(request):
+    if request.method == 'POST':
+        u_id = request.user.id
+        title = request.POST['title']
+        rating = request.POST['reviewStar']
+        review = request.POST['review']
+        
+        if title is not None:
+            try:
+                rest = RestInfo.objects.get(p_name=title)
+                attr = None
+            except:
+                attr = AttrInfo.objects.get(p_name=title)
+                rest = None
+            if rest is not None:
+                ReviewRestInfo.objects.create(u_id=u_id, p_id=rest.p_id, rating=rating, review=review)
+                
+            else:
+                ReviewAttrInfo.objects.create(u_id=u_id, p_id=attr.p_id, rating=rating, review=review)
