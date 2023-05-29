@@ -9,7 +9,7 @@
 </p>
 <div id="map" style="width: 100%; height: 800px"></div>
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce693e5ecf0abc032edde8fe8f50ff8&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f15bf64d5cd9e5a64c298a73bcab3a9e&libraries=services"></script>
 <script>
   var items = JSON.parse("{{ items|escapejs }}");
   console.log(items);
@@ -30,6 +30,8 @@
           position: markerPosition,
           title: title,
         });
+
+
         var infowindow = new kakao.maps.InfoWindow({
           content:
             `<h2>` +
@@ -62,6 +64,7 @@
   </div>
 </form>`,
         });
+
         kakao.maps.event.addListener(marker, "click", function () {
           if (marker.getZIndex() === 1) {
             marker.setZIndex(2);

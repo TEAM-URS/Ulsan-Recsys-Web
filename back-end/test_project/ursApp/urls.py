@@ -10,5 +10,8 @@ urlpatterns = [
     path('questionnaire_a/', views.questionnaire_a, name='questionnaire_a'),
     path('cbf/', views.cbf, name='cbf'),
     path('review/', views.review, name='review'),
+    path('recsys_r2/', views.recsys_r2, name='recsys_r2'),
+    path('recsys_a2/', views.recsys_a2, name='recsys_a2'),
+    path('cbf2/', views.cbf2, name='cbf2'),
+    path('recsys/', views.recsys, name='recsys'),
 ]
-

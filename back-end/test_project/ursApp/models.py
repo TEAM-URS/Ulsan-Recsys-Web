@@ -14,7 +14,6 @@ class RestInfo(models.Model):
     address = models.CharField(max_length=100, blank=True)
     url = models.CharField(max_length=100)
     
-    
 class AttrInfo(models.Model):
     p_id = models.AutoField(primary_key=True)
     p_name = models.CharField(max_length=100)
@@ -38,17 +37,13 @@ class ReviewAttrInfo(models.Model):
     review = models.CharField(max_length=500, blank=True)
     
 class UserRestReview(models.Model):
-    r_id = models.IntegerField(primary_key=True)
-    u_id = models.IntegerField(null=True)
+    pr_id = models.IntegerField(primary_key=True)
     p_id = models.IntegerField(null=True)
     rating = models.IntegerField(null=True)
     review = models.CharField(max_length=500)
  
 class UserAttrReview(models.Model):
-    r_id = models.IntegerField(primary_key=True)
-    u_id = models.IntegerField(null=True)
+    pr_id = models.IntegerField(primary_key=True)
     p_id = models.IntegerField(null=True)
     rating = models.IntegerField(null=True)
     review = models.CharField(max_length=500)
-    
-    

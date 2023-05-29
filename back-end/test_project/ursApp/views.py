@@ -6,11 +6,17 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import UserInfo, RestInfo, AttrInfo, ReviewAttrInfo, ReviewRestInfo
 import tensorflow as tf
 from .recsys.filltering import recom_cbf, recom_hybrid
 from .recsys.util import get_unvisted_item, get_items, load_data, culc_sim
+
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import RestInfoSerializer, AttrInfoSerializer
 
 
 def i_id2i_name(k, kind):
@@ -24,6 +30,7 @@ def i_id2i_name(k, kind):
         for i_id in k:
             item = AttrInfo.objects.get(p_id=i_id)
             i_list.append(item)
+
     return i_list
 
 
@@ -39,7 +46,7 @@ def recsys_r(request):
         user_id = str(request.user)
         print(user_id)
         user = UserInfo.objects.get(u_name=user_id)
-        print(user.u_name)
+
         i_list = False
         if request.POST:
             u_id = int(user.u_id)
@@ -74,7 +81,7 @@ def recsys_a(request):
             top_n = list(top_n.p_id)
             
             i_list = i_id2i_name(top_n, kind='attr')
-        else:
+        else: 
             u_id = False
 
         return render(request, 'ursapp/recsys_a.html', {'i_list': i_list, 'type': 'attr'})
@@ -123,12 +130,11 @@ def cbf(request): ## 사전설문지기반으로 컨텐츠기반필터링 추천
                     cbf_list.extend(recom_cbf(int(item.p_id), sim, flag=1))
     except:
         HttpResponse(400)
-    print(cbf_list)
+    print('cbf_list', cbf_list)
     cbf_pids = [i[0] for i in cbf_list]
-    if kind == 'rest':
-        i_list = i_id2i_name(cbf_pids, kind)
-    else:
-        i_list = i_id2i_name(cbf_pids, kind)
+
+    i_list = i_id2i_name(cbf_pids, kind)
+
     return render(request, 'ursapp/cbf.html', {'i_list': i_list, 'type': kind})
     
 @login_required
@@ -173,3 +179,109 @@ def review(request):
                 
             else:
                 ReviewAttrInfo.objects.create(u_id=u_id, p_id=attr.p_id, rating=rating, review=review)
+            
+        return HttpResponse(status=200)  # Return the desired status code
+        
+    return HttpResponse(status=405)  # Return a different status code for unsupported HTTP methods
+
+@api_view(['GET'])
+def recsys_r2(request):
+    username = request.GET.get('username')
+    try:
+        # UserInfo 테이블 존재 여부 확인
+        user = UserInfo.objects.get(u_name=username)
+        u_id = int(user.u_id)
+
+        # 기존 유저일 경우 
+        return HttpResponse(status=200)
+    
+    except:
+        # 신규 유저일 경우
+        try:
+            items = RestInfo.objects.order_by('-rating')[:20]
+            serializer = RestInfoSerializer(items, many=True)
+            return Response(serializer.data, status=201)
+        except:
+            return HttpResponse(status=400)
+        
+@api_view(['GET'])
+def recsys_a2(request):
+    username = request.GET.get('username')
+    try:
+        # UserInfo 테이블 존재 여부 확인
+        user = UserInfo.objects.get(u_name=username)
+        u_id = int(user.u_id)
+
+        # 기존 유저일 경우 
+        return HttpResponse(status=200)
+    
+    except:
+        # 신규 유저일 경우
+        try:
+            items = AttrInfo.objects.order_by('-rating')[:20]
+            serializer = AttrInfoSerializer(items, many=True)
+            return Response(serializer.data, status=201)
+        except:
+            return HttpResponse(status=400)
+
+@api_view(['POST'])
+def cbf2(request):
+    cbf_list = []
+
+    try:
+        if (request.method == 'POST'):
+            data = request.data
+            kind = data['type']
+            items = data['data']
+            
+            for i in items:
+                if kind == 'rest':
+                    item = RestInfo.objects.get(p_name=str(i))
+                    sim = culc_sim(kind)
+                    cbf_list.extend(recom_cbf(int(item.p_id), sim, flag=1))
+                else:
+                    item = AttrInfo.objects.get(p_name=str(i))
+                    sim = culc_sim(kind)
+                    cbf_list.extend(recom_cbf(int(item.p_id), sim, flag=1))
+
+            cbf_pids = [i[0] for i in cbf_list]
+            i_list = i_id2i_name(cbf_pids, kind)
+
+            serializer = AttrInfoSerializer(i_list, many=True)
+
+            return Response(serializer.data, status=200)
+    except:
+        return Response(status=400)
+    
+@api_view(['GET'])
+def recsys(request):
+    try:
+        username = request.GET.get('username')
+        user = UserInfo.objects.get(u_name=username)
+        kind = request.GET.get('kind')
+
+        if kind == 'rest':
+            model_name = 'ursapp/recsys/model/MLP.h5'
+        elif kind == 'attr':
+            model_name = 'ursapp/recsys/model/attraction_MLP.h5'
+
+        # 하이브리드 추천 시작
+        if request.GET:
+            u_id = int(user.u_id)
+            load_model = tf.keras.models.load_model(model_name)
+            data_df = load_data(kind)
+            sim = culc_sim(kind)
+            top_n = recom_hybrid(load_model, int(u_id), data_df, 10, sim)
+            top_n = list(top_n.p_id)
+
+            i_list = i_id2i_name(top_n, kind)
+
+            serializer = AttrInfoSerializer(i_list, many=True)
+
+            return Response(serializer.data, status=200)
+        
+        else:
+            return Response(status=401)
+        
+    except:
+        return Response(status=400)
