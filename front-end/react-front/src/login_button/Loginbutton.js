@@ -18,10 +18,8 @@ const DropdownLogin = () => {
         <div className="container">
         <div className="menu-container">
             <button ref={buttonRef} onClick={onClick} className="menu-trigger">
-            <span>User</span>
             <img
                 src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/df/df7789f313571604c0e4fb82154f7ee93d9989c6.jpg"
-                alt="User avatar"
             />
             </button>
             <nav
@@ -30,7 +28,7 @@ const DropdownLogin = () => {
             >
             <ul>
                 <li>
-                <a href="#" id="logout">Logout</a>
+                <a href="http://localhost:8000/logout" id="logout">Logout</a>
                 </li>
             </ul>
             </nav>
