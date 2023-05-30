@@ -14,4 +14,5 @@ urlpatterns = [
     path('recsys_a2/', views.recsys_a2, name='recsys_a2'),
     path('cbf2/', views.cbf2, name='cbf2'),
     path('recsys/', views.recsys, name='recsys'),
+    path('pull_reviews/', views.pull_reviews, name='pull_reviews'),
 ]
