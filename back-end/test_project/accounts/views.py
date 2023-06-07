@@ -27,7 +27,8 @@ def signup(request):
     if password == request.POST['password2']:
       user = User.objects.create_user(username=username, email=email, password=password)
       auth.login(request, user)
-      return render(request, 'ursapp/index.html')
+      redirect_url = 'http://localhost:3000?username=' + username
+      return HttpResponseRedirect(redirect_url)
   return render(request, 'accounts/signup.html')
 
 @csrf_exempt

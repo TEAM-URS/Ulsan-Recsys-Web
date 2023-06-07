@@ -220,7 +220,6 @@ def recsys_r2(request):
     try:
         # UserInfo 테이블 존재 여부 확인
         user = UserInfo.objects.get(u_name=username)
-        u_id = int(user.u_id)
 
         # 기존 유저일 경우 
         return HttpResponse(status=200)
@@ -240,7 +239,6 @@ def recsys_a2(request):
     try:
         # UserInfo 테이블 존재 여부 확인
         user = UserInfo.objects.get(u_name=username)
-        u_id = int(user.u_id)
 
         # 기존 유저일 경우 
         return HttpResponse(status=200)

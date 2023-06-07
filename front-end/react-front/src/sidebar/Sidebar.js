@@ -13,6 +13,7 @@ class Sidebar extends React.Component {
       menuOpen: false,
       isVisited: false,
       reviews: [],
+      imageSrc: "",
     };
     this.contentRef = React.createRef();
     this.visitButtonRef = React.createRef(); // Create a ref for VisitButton
@@ -20,6 +21,7 @@ class Sidebar extends React.Component {
 
   setTitle(title) {
     this.setState({ title: title });
+    this.setState({imageSrc: `img/${title}/1.jpg`})
   }
 
   handleStateChange(state) {
@@ -61,10 +63,8 @@ class Sidebar extends React.Component {
   render() {
     var reviewItems = (
       <div key={0}>
-        <p className="review-text">리뷰 없음</p>
       </div>
     );
-    if (this.state.menuOpen) {
       const reviews = this.state.reviews; // 리뷰 데이터 가져오기
       reviewItems = reviews.map((review) => (
         <div>
@@ -75,7 +75,6 @@ class Sidebar extends React.Component {
           </p>
         </div>
       ));
-    }
     return (
       <div ref={this.contentRef}>
         <Menu
@@ -92,7 +91,9 @@ class Sidebar extends React.Component {
               <div className=""></div>
               <VisitButton ref={this.visitButtonRef} title={this.state.title} /> {/* Pass the title value */}
             </div>
-            <div className="image-wrapper"></div>
+            <div className="image-wrapper">
+              <img src={this.state.imageSrc}/>
+            </div>
             <div>{reviewItems}</div>
           </div>
         </Menu>
