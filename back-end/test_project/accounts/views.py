@@ -19,17 +19,17 @@ def signup(request):
     password_regex = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$'
     
     if not re.match(email_regex, email):
-      return render(request, 'accounts/signup.html', {'error':'이메일을 다시 입력해주세요.'})
+      return render(request, 'accounts/loginSignup.html', {'error':'이메일을 다시 입력해주세요.'})
     
     if not re.match(password_regex, password):
-      return render(request, 'accounts/signup.html', {'error':'비밀번호를 다시 입력해주세요.'})
+      return render(request, 'accounts/loginSignup.html', {'error':'비밀번호를 다시 입력해주세요.'})
     
     if password == request.POST['password2']:
       user = User.objects.create_user(username=username, email=email, password=password)
       auth.login(request, user)
       redirect_url = 'http://localhost:3000?username=' + username
       return HttpResponseRedirect(redirect_url)
-  return render(request, 'accounts/signup.html')
+  return render(request, 'accounts/loginSignup.html')
 
 @csrf_exempt
 def login(request):
@@ -42,9 +42,9 @@ def login(request):
       redirect_url = 'http://localhost:3000?username=' + username
       return HttpResponseRedirect(redirect_url)
     else:
-      return render(request, 'accounts/login.html', {'error':'아이디, 비밀번호를 확인해주세요.'})
+      return render(request, 'accounts/loginSignup.html', {'error':'아이디, 비밀번호를 확인해주세요.'})
   else:
-    return render(request, 'accounts/login.html')
+    return render(request, 'accounts/loginSignup.html')
   
 def logout(request):
   if request.method == 'GET':

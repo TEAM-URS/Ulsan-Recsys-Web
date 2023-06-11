@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
 
   setTitle(title) {
     this.setState({ title: title });
-    this.setState({imageSrc: `img/${title}/1.jpg`})
+    this.setState({ imageSrc: `img/${title}/1.jpg` });
   }
 
   handleStateChange(state) {
@@ -61,20 +61,17 @@ class Sidebar extends React.Component {
       });
   }
   render() {
-    var reviewItems = (
-      <div key={0}>
+    var reviewItems = <div key={0}></div>;
+    const reviews = this.state.reviews; // 리뷰 데이터 가져오기
+    reviewItems = reviews.map((review) => (
+      <div>
+        <p className="review-text">
+          별점: {review.rating}
+          <br />
+          리뷰: {review.review}
+        </p>
       </div>
-    );
-      const reviews = this.state.reviews; // 리뷰 데이터 가져오기
-      reviewItems = reviews.map((review) => (
-        <div>
-          <p className="review-text">
-            별점: {review.rating}
-            <br />
-            리뷰: {review.review}
-          </p>
-        </div>
-      ));
+    ));
     return (
       <div ref={this.contentRef}>
         <Menu
@@ -92,7 +89,7 @@ class Sidebar extends React.Component {
               <VisitButton ref={this.visitButtonRef} title={this.state.title} /> {/* Pass the title value */}
             </div>
             <div className="image-wrapper">
-              <img src={this.state.imageSrc}/>
+              <img src={this.state.imageSrc} />
             </div>
             <div>{reviewItems}</div>
           </div>
