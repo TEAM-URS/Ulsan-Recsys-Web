@@ -60,18 +60,31 @@ class Sidebar extends React.Component {
         console.error("Error pulling reviews:", error);
       });
   }
+
   render() {
     var reviewItems = <div key={0}></div>;
-    const reviews = this.state.reviews; // 리뷰 데이터 가져오기
+    const reviews = this.state.reviews;
     reviewItems = reviews.map((review) => (
       <div>
-        <p className="review-text">
-          별점: {review.rating}
-          <br />
-          리뷰: {review.review}
-        </p>
+        <div key={review.id} className="review-box">
+          <img src="img/user.png" alt="User" className="user-image" />
+          <div className="review-header">
+            <div className="rating-container">
+              {Array.from({ length: review.rating }, (_, index) => (
+                <span key={index} className="star-icon">
+                  ★
+                </span>
+              ))}
+            </div>
+            <div>
+              <p className="review-text">{review.review}</p>
+            </div>
+          </div>
+        </div>
+        <hr />
       </div>
     ));
+
     return (
       <div ref={this.contentRef}>
         <Menu
@@ -89,9 +102,9 @@ class Sidebar extends React.Component {
               <VisitButton ref={this.visitButtonRef} title={this.state.title} /> {/* Pass the title value */}
             </div>
             <div className="image-wrapper">
-              <img src={this.state.imageSrc} />
+              <img src={this.state.imageSrc} alt="Image" />
             </div>
-            <div>{reviewItems}</div>
+            <div className="reviews-container">{reviewItems}</div>
           </div>
         </Menu>
       </div>
