@@ -157,9 +157,6 @@ function addMarker(index, position, normalOrigin, overOrigin, clickOrigin, items
     ref.current.setMenuOpen();
     ref.current.pullReviews(items.p_name);
 
-    // 마커의 커스텀 속성을 출력
-    console.log(marker.id);
-
     // 클릭된 마커를 현재 클릭된 마커 객체로 설정
     selectedMarker = marker;
   });
