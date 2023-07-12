@@ -1,8 +1,8 @@
 # 당신의 취향에 딱 맞는 맛집과 명소를 추천합니다!
 
 - 2023 UOU IT Convergence senior project(2023 IT융합학부 졸업작품)
-- [최종발표자료_출력용]()
-- [최종보고서]()
+- [최종발표자료_출력용](https://github.com/TEAM-URS/Ulsan-Resys-Web/blob/main/%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_%EC%B6%9C%EB%A0%A5%EB%B3%B8.pdf)
+- [최종보고서](https://github.com/TEAM-URS/Ulsan-Resys-Web/blob/main/%EC%A1%B8%EC%97%85%EC%9E%91%ED%92%88%EA%B0%9C%EB%B0%9C%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf)
 
 ## 1. Project Abstract
 
@@ -16,6 +16,8 @@
     * 구축된 DB를 통한 개인화 추천
     * 리뷰 및 평점 등록
 
+* [데이터분석 및 모델 실험 레포지토리](https://github.com/TEAM-URS/Ulsan_recommendation_Systyem)
+* 
 ### Team URS
 
 #### Members  
