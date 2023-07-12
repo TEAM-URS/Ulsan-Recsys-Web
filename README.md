@@ -14,6 +14,7 @@
 * 주요 기능
     * 딥러닝 기반 맛집/명소 추천
     * 구축된 DB를 통한 개인화 추천
+    * 추천장소 KakaoMap-api를 통한 시각화
     * 리뷰 및 평점 등록
 
 * [데이터분석 및 모델 실험 레포지토리](https://github.com/TEAM-URS/Ulsan_recommendation_Systyem)
