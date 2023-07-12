@@ -17,7 +17,7 @@
     * 리뷰 및 평점 등록
 
 * [데이터분석 및 모델 실험 레포지토리](https://github.com/TEAM-URS/Ulsan_recommendation_Systyem)
-* 
+
 ### Team URS
 
 #### Members  
