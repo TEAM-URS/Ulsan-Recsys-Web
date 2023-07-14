@@ -30,8 +30,8 @@
 #### 🏆 Contribution  
 
 - [`박영준`](https://github.com/KyungHyunLim) &nbsp; PM • Frontend • Backend
-- [`김창영`](https://github.com/Gangsss) &nbsp; Backend • Web crawling • Text Mining • Resys Modeling • Resys Modeling • DB • Presentation
-- [`박상원`](https://github.com/Kimdongui) &nbsp; Backend • Frontend • Web crawling • Text Mining • Resys Modeling
+- [`김창영`](https://github.com/Gangsss) &nbsp; Backend • Web crawling • Text Mining • Recsys Modeling • DB • Presentation
+- [`박상원`](https://github.com/Kimdongui) &nbsp; Backend • Frontend • Web crawling • Text Mining • Recsys Modeling
 
 <br>자세한 기여도는 최종보고서의 제작일정 참고<br>
 
