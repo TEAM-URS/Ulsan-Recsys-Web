@@ -48,7 +48,7 @@
 - [GPU] : Ubuntu 20.04, CUDA 11.4, NVIDIA RTX A6000
 - [Framework] : Tensorflow2.10, Django REST Framework, React, Django
 - [DB] : SQLite3
-- [Collaboration Tool] Git-hub, Notion
+- [Collaboration Tool] Git-hub, Notion, Google-meet
 - [IDE] : Visual Studio, Anaconda
 
 
