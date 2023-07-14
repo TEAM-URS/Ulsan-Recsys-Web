@@ -22,10 +22,10 @@
 ### Team URS
 
 #### Members  
-박영준|김창영|박상원
+[`박영준`](https://github.com/KyungHyunLim)|[`김창영`](https://github.com/Gangsss)|[`박상원`](https://github.com/Kimdongui)
 
 #### Adviser
-[윤석훈 교수](https://sites.google.com/view/amnl-uou/home)
+[`윤석훈`](https://sites.google.com/view/amnl-uou/home) 교수
 
 #### 🏆 Contribution  
 
@@ -38,8 +38,10 @@
 ## 2. Getting start
 
 ## 3. Stacks
+![image](https://github.com/TEAM-URS/Ulsan-Resys-Web/assets/97018869/faac517f-dbaa-4fe7-ba46-2f3871ece05b)
 
 ## 4. Software Concept Diagram
+![image](https://github.com/TEAM-URS/Ulsan-Resys-Web/assets/97018869/fb77c677-3516-4480-9fd4-db3af1590917)
 
 ## 5. Equipment & Software
 - [OS] : windows 11, macOS Ventura
@@ -51,7 +53,8 @@
 
 
 ## 6.Demo
-![최종작품 시연]()
+![image](https://github.com/TEAM-URS/Ulsan-Resys-Web/assets/97018869/82a15ca1-14b6-4bde-8c2b-a9a04e7e8ce1)
+
 
 
 ## 7. License
