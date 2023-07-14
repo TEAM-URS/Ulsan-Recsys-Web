@@ -22,16 +22,16 @@
 ### Team URS
 
 #### Members  
-[`박영준`](https://github.com/KyungHyunLim)|[`김창영`](https://github.com/Gangsss)|[`박상원`](https://github.com/Kimdongui)
+[`박영준`](https://github.com/NAKTA-Y)|[`김창영`](https://github.com/ChangZero)|[`박상원`](https://github.com/pass0210)
 
 #### Adviser
 [`윤석훈`](https://sites.google.com/view/amnl-uou/home) 교수
 
 #### 🏆 Contribution  
 
-- [`박영준`](https://github.com/KyungHyunLim) &nbsp; PM • Frontend • Backend
-- [`김창영`](https://github.com/Gangsss) &nbsp; Backend • Web crawling • Text Mining • Recsys Modeling • DB • Presentation
-- [`박상원`](https://github.com/Kimdongui) &nbsp; Backend • Frontend • Web crawling • Text Mining • Recsys Modeling
+- [`박영준`](https://github.com/NAKTA-Y) &nbsp; PM • Frontend • Backend
+- [`김창영`](https://github.com/ChangZero) &nbsp; Backend • Web crawling • Text Mining • Recsys Modeling • DB • Presentation
+- [`박상원`](https://github.com/pass0210) &nbsp; Backend • Frontend • Web crawling • Text Mining • Recsys Modeling
 
 <br>자세한 기여도는 최종보고서의 제작일정 참고<br>
 
