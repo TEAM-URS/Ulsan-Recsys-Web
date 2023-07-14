@@ -24,6 +24,9 @@
 #### Members  
 박영준|김창영|박상원
 
+#### Adviser
+[윤석훈 교수](https://sites.google.com/view/amnl-uou/home)
+
 #### 🏆 Contribution  
 
 - [`박영준`](https://github.com/KyungHyunLim) &nbsp; PM • Frontend • Backend
@@ -32,10 +35,13 @@
 
 <br>자세한 기여도는 최종보고서의 제작일정 참고<br>
 
-## 2. Dependency management
+## 2. Getting start
 
+## 3. Stacks
 
-## 3. Equipment & Software
+## 4. Software Concept Diagram
+
+## 5. Equipment & Software
 - [OS] : windows 11, macOS Ventura
 - [GPU] : Ubuntu 20.04, CUDA 11.4, NVIDIA RTX A6000
 - [Framework] : Tensorflow2.10, Django REST Framework, React, Django
@@ -44,11 +50,11 @@
 - [IDE] : Visual Studio, Anaconda
 
 
-## 4.시연 영상
+## 6.Demo
 ![최종작품 시연]()
 
 
-## 5. License
+## 7. License
 
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
