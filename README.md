@@ -45,7 +45,7 @@
 
 ## 5. Equipment & Software
 - [OS] : windows 11, macOS Ventura
-- [GPU] : Ubuntu 20.04, CUDA 11.4, NVIDIA RTX A6000
+- [GPU] : CUDA 11.4, NVIDIA RTX A6000
 - [Framework] : Tensorflow2.10, Django REST Framework, React, Django
 - [DB] : SQLite3
 - [Collaboration Tool] Git-hub, Notion, Google-meet
