@@ -36,8 +36,19 @@
 <br>자세한 기여도는 최종보고서의 제작일정 참고<br>
 
 ## 2. Getting start
+
+### Git clone
+```
+git clone https://github.com/TEAM-URS/Ulsan-Recsys-Web.git
+```
+### Docker
+#### Development
 ```
 docker-compose -f docker-compose.dev.yml up -d
+```
+#### Production
+```
+docker-compose -f docker-compose.prod.yml up -d
 ```
 ## 3. Stacks
 ![image](https://github.com/TEAM-URS/Ulsan-Resys-Web/assets/97018869/faac517f-dbaa-4fe7-ba46-2f3871ece05b)
