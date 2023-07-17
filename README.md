@@ -66,7 +66,10 @@ docker-compose -f docker-compose.prod.yml up -d
 
 
 ## 6.Demo
-![image](https://github.com/TEAM-URS/Ulsan-Resys-Web/assets/97018869/82a15ca1-14b6-4bde-8c2b-a9a04e7e8ce1)
+https://github.com/TEAM-URS/Ulsan-Recsys-Web/assets/74942574/20e0d1b8-0817-46fa-935d-05437067be10
+
+
+
 
 
 
