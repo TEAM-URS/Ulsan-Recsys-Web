@@ -29,7 +29,7 @@
 
 #### 🏆 Contribution  
 
-- [`박영준`](https://github.com/NAKTA-Y) &nbsp; PM • Frontend • Backend
+- [`박영준`](https://github.com/NAKTA-Y) &nbsp; PM • Frontend • Backend • DB
 - [`김창영`](https://github.com/ChangZero) &nbsp; Backend • Web crawling • Text Mining • Recsys Modeling • DB • Presentation
 - [`박상원`](https://github.com/pass0210) &nbsp; Frontend • Backend • Web crawling • Text Mining • Recsys Modeling
 
