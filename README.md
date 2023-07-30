@@ -29,10 +29,11 @@
 
 #### 🏆 Contribution  
 
-- [`박영준`](https://github.com/NAKTA-Y) &nbsp; PM • Frontend • Backend • DB
+- [`박영준`](https://github.com/NAKTA-Y) &nbsp; PM(Scrum Master) • Frontend • Backend • DB
 - [`김창영`](https://github.com/ChangZero) &nbsp; Backend • Web crawling • Text Mining • Recsys Modeling • DB • Presentation
 - [`박상원`](https://github.com/pass0210) &nbsp; Frontend • Backend • Web crawling • Text Mining • Recsys Modeling
 
+<br>애자일 프로세스를 통한 민첩한 개발 및 유연한 의사결정<br>
 <br>자세한 기여도는 최종보고서의 제작일정 참고<br>
 
 ## 2. Getting start
